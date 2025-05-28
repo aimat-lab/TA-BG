@@ -46,5 +46,5 @@ python train.py -cd configs/paper/<system_name>/ -cn <config_name>
 TA-BG experiments are performed in two stages. First, a reverse KLD experiment
 at elevated temperature needs to be performed (using, e.g.
 `./configs/paper/aldp/rev_kld_1200K.yaml`). The annealing is then performed in a
-separate experiment, where the checkpoint from the pre-training is used (set
-`config.training.checkpoint_path` to a checkpoint from the pre-training experiment).
+separate experiment, where the checkpoint from the pre-training is used (set config option
+`training.checkpoint_path` to a checkpoint from the pre-training experiment).
