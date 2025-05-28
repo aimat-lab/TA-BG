@@ -1,0 +1,30 @@
+defaults:
+  - reverse_kl
+  - system: gmm
+  - _self_
+
+main_temp: 30.0
+
+training:
+  lr: 1.e-4
+  batch_size: 128
+
+  max_iter: 50_000
+
+  training_mode:
+    mode_name: "reverse_kld"
+    remove_top_k_energies: null
+
+  max_grad_norm: 100.0
+  warmup_iters: 1000
+
+  energy_regularizer: null
+
+  weight_decay: 1.e-5
+
+  lr_scheduler: null
+
+  checkpoint_path: null
+
+checkpointing:
+  write_checkpoint_every: ${training.max_iter}

@@ -1,0 +1,3 @@
+scheduler_type: "cosine"
+T_max: ${training.max_iter}
+eta_min: 0.0

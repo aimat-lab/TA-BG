@@ -1,0 +1,5 @@
+# @package _global_
+training:
+  energy_regularizer:
+    energy_high: 1.e+8
+    energy_max: 1.e+20

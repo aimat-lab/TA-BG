@@ -1,0 +1,13 @@
+defaults:
+  - system: tetra
+  - fab
+  - _self_
+
+main_temp: 300.0
+
+training:
+  lr: 1.e-4
+  batch_size: 1024
+
+checkpointing:
+  write_checkpoint_every: 10_000

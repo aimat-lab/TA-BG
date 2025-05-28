@@ -1,0 +1,13 @@
+.VSCodeCounter
+slurm-*.out
+*.pyc
+__pycache__
+.vscode
+annealed_bg.egg-info
+annealed_bg/wandb/debug*
+annealed_bg/wandb/latest-run*
+annealed_bg/wandb/run*
+annealed_bg/wandb/offline-run*
+annealed_bg/data/aldp
+annealed_bg/data/tetra
+annealed_bg/data/hexa

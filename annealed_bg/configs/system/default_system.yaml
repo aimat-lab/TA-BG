@@ -1,0 +1,15 @@
+name: ???
+
+data_type: "openmm"
+val_data: ???
+train_data: ???
+
+constrain_chirality: True
+
+marginals_2D: {}
+marginals_2D_vmax: null
+
+tica_path_and_selection: null
+tica_vmax: null
+
+eval_IS_clipping_fraction: 1.e-4

@@ -1,0 +1,81 @@
+defaults:
+  - flow: default_flow
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+  - _self_
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+main_temp: ???
+
+training:
+  lr: ???
+  batch_size: ???
+
+  max_iter: 250_000
+
+  training_mode: ???
+
+  max_grad_norm: null
+  warmup_iters: null
+  weight_decay: null
+
+  lr_scheduler: null
+
+  checkpoint_path: null
+
+flow:
+  min_energy_structure_path: "./input_files/${system.name}/position_min_energy.pt"
+
+evaluation:
+  apply_cart_permutation_to_ground_truth_datasets: False
+
+  eval_every: 20_000
+  eval_samples: 1_000_000
+
+  big_eval_every: ${training.max_iter}
+  big_eval_samples: 10_000_000
+
+  additional_sampling_eval_every: ${training.max_iter}
+  additional_sampling_eval_samples: 50_000
+
+  NLL_every: 5_000
+
+  calculate_forward_ESS_for_Ts: []
+  overwrite_eval_sampling_T_pairs: null
+  overwrite_eval_NLL_Ts: null
+
+  skip_initial_eval: False
+
+checkpointing:
+  write_checkpoint_every: 50_000
+
+system: ???
+
+general:
+  n_workers: 16
+  precision: "single" # Possible: "single", "double"
+  wandb_log_every: 100
+
+experiment:
+  wandb_notes: ""
+  wandb_group: null
+  wandb_tags: null
+  disable_wandb: False
+  wandb_offline: False
+
+  # Options for resuming runs:
+  resume_wandb_id: null
+  checkpoint_i: null
+  resume_after_in_h: null
+  wandb_force_new_experiment: False # Never resume a wandb experiment, even when `resume_wandb_id` is set; always create a new wandb experiment.
+
+  only_run_eval: False
+  only_run_eval_include_sampling: True
+  only_run_eval_include_additional_sampling: True
+  only_run_eval_include_NLL: True
+  only_run_eval_include_forward_ESS: True
+  eval_outdir: null # Only allowed if only_run_eval=True

@@ -1,0 +1,19 @@
+defaults:
+  - default_system
+  - energy_reg
+  - _self_
+
+name: "aldp"
+
+val_data:
+  "300.0": "./data/aldp/300K_test_fab.npy"
+  "1200.0": "./data/aldp/1200K_val.npy"
+train_data:
+  "300.0": "./data/aldp/300K_train.npy"
+
+marginals_2D:
+  "TORSIONS":
+    - [4,11] # phi and psi
+marginals_2D_vmax: 11.0
+
+default_checkpoint_paths: null

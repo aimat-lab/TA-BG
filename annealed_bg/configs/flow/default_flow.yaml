@@ -1,0 +1,17 @@
+defaults:
+  - architecture: random_8
+  - _self_
+
+min_energy_structure_path: ???
+torsion_shifts: True
+
+use_sobol_prior: False
+
+hidden: [256,256,256,256,256]
+use_silu_activation: False
+add_skip_connection: False
+
+constrain_hydrogen_permutation: True
+
+couplings_transform_type: "spline"
+spline_num_bins: 8

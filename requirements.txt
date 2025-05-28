@@ -1,0 +1,22 @@
+numpy
+torch
+normflows==1.7.3
+boltzgen @ git+https://github.com/VincentStimper/boltzmann-generators.git
+larsflow @ git+https://github.com/VincentStimper/resampled-base-flows.git@18db5bf28ffa1d5ab9ef2b63856e186affee604b
+nflows @ git+https://github.com/bayesiains/nflows.git@3b122e5bbc14ed196301969c12d1c2d94fdfba47
+bgmol @ git+https://github.com/noegroup/bgmol.git@2be2ede75ce137258fc83c01b28648a8c29161de
+bgflow @ git+https://github.com/henrik-schopmans/bgflow.git
+fab @ git+https://github.com/henrik-schopmans/fab-torch-orig.git
+python-box==7.2.0
+scienceplots==2.1.1
+pydantic==2.10.3
+mdtraj
+matplotlib==3.10.0
+pandas
+tqdm
+wandb
+hydra-core
+ase
+einops
+pytest
+auto-slurm @ git+https://github.com/aimat-lab/AutoSlurm.git

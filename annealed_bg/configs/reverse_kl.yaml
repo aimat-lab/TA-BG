@@ -1,0 +1,23 @@
+defaults:
+  - default
+  - training/lr_scheduler: cosine_onecycle
+  - _self_
+
+training:
+  lr: 1.e-4
+  batch_size: 1024
+
+  training_mode:
+    mode_name: "reverse_kld"
+    remove_top_k_energies: 40
+
+  max_grad_norm: 100.0
+  warmup_iters: 1000
+
+  weight_decay: 1.e-5
+
+experiment:
+  wandb_tags:
+    - "rev_kl"
+    - ${system.name}
+    - "${main_temp}K"

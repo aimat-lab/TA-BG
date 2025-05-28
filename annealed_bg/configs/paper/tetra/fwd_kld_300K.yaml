@@ -1,0 +1,18 @@
+defaults:
+  - system: tetra
+  - forward_kl
+  - _self_
+
+main_temp: 300.0
+
+training:
+  lr: 5.e-5
+  batch_size: 1024
+  max_iter: 100_000
+
+evaluation:
+  eval_every: 10_000
+  eval_samples: 1_000_000
+  big_eval_every: ${training.max_iter}
+  big_eval_samples: 10_000_000
+  NLL_every: 5_000

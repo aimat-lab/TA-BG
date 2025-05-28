@@ -1,0 +1,21 @@
+defaults:
+  - system: hexa
+  - reverse_kl
+  - _self_
+
+main_temp: 1200.0
+
+training:
+  max_iter: 250_000
+
+  lr: 1.e-4
+  batch_size: 512
+
+  training_mode:
+    remove_top_k_energies: 20
+
+evaluation:
+  big_eval_samples: 10_000_000
+
+checkpointing:
+  write_checkpoint_every: 50_000

@@ -1,0 +1,25 @@
+defaults:
+  - system: hexa
+  - fab
+  - _self_
+
+main_temp: 300.0
+
+training:
+  lr: 1.e-4
+  batch_size: 1024
+
+  training_mode:
+    n_int_dist: 8
+    n_inner: 8
+    adjust_step_size_training: True
+    alpha: 2.0
+
+evaluation:
+  big_eval_samples: 10_000_000
+
+system:
+  tica_path_and_selection: null
+
+checkpointing:
+  write_checkpoint_every: 10_000

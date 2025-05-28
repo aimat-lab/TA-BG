@@ -1,0 +1,11 @@
+# @package _global_
+training:
+  training_mode:
+    # Trafo applied on the ICs before performing AIS
+    # Syntax: {channel_name: (perform unbound atanh trafo?, scaler)}
+    AIS_trafo_config:
+      "BONDS": [False, 10.0]
+      "ANGLES": [False, 10.0]
+      "TORSIONS": [False, 10.0]
+
+    reject_spline_OOB_samples: True

@@ -1,0 +1,63 @@
+defaults:
+  - default
+  - _self_
+
+main_temp: 1200.0
+
+training:
+  lr: 5.e-6
+  batch_size: 1024
+  max_iter: 200_000
+
+  lr_scheduler: null
+
+  checkpoint_path: "default" # "default" means that the default checkpoint (defined in system) will be used
+
+  training_mode:
+    mode_name: "reweighting"
+
+    max_temperature_range: 
+      - 300.0
+      - ${main_temp}
+
+    temp_sampling:
+      temp_sampling_strategy: "sequence"
+
+      # Format for each sequence step:
+      # - (sampling_T, reweighting_T, [iterations_per_step], [reinit generator], [n_samples], [resample_to])
+      sequence: [[1200.0, 1028.69], [1028.69, 881.84], [881.84, 755.95], [755.95, 648.04], [648.04, 555.52], [555.52, 476.22], [476.22, 408.24], [408.24, 349.96], [349.96, 300.0], [300.0, 300.0]]
+
+      iterations_per_step: 20_000
+
+    buffer:
+      activate_buffer_after: -1
+      buffer_n_samples_per_T: 10_000_000
+      update_buffer_every: 20_000
+
+      resample_to: 1_000_000
+      clip_top_k_weights_fraction: 1.e-4
+
+    context_preprocessor: null
+
+    # Only used when no buffer is used:
+    resample_batch_to: null # Can be null, in which case normalized weights are used directly in the loss
+    self_normalize_weights: True
+    clip_top_k_weights: null
+
+evaluation:
+  eval_every: 20_000
+  eval_samples: 1_000_000
+
+  big_eval_every: 200_000
+  big_eval_samples: 10_000_000
+
+  NLL_every: 4000
+
+checkpointing:
+  write_checkpoint_every: 200_000
+
+experiment:
+  wandb_tags:
+    - "geometric_annealing"
+    - ${system.name}
+    - "${main_temp}K"

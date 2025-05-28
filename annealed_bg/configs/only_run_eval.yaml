@@ -1,0 +1,21 @@
+defaults:
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+  - _self_
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+experiment:
+  wandb_offline: False
+  resume_wandb_id: ???
+  checkpoint_i: null
+  resume_after_in_h: null
+  wandb_force_new_experiment: False
+  only_run_eval: True
+  eval_outdir: ???
+
+evaluation:
+  big_eval_samples: 10_000_000

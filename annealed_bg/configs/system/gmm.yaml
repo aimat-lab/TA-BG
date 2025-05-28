@@ -1,0 +1,79 @@
+# @package _global_
+training:
+  energy_regularizer: null
+
+system:
+  name: "2D-GMM"
+
+  data_type: "raw"
+  val_data:
+    "1.0":  "./data/gmm/data.npy"
+    "30.0":  "./data/gmm/data.npy" # Temporarily, since we don't have GT data at this temp yet
+  train_data: {}
+
+  constrain_chirality: False
+
+  marginals_2D:
+    "TARGET":
+      - [0,1]
+  marginals_2D_vmax: null
+
+  tica_path_and_selection: null
+  tica_vmax: null
+
+  eval_IS_clipping_fraction: null
+
+  default_checkpoint_paths: null
+
+flow:
+  couplings_transform_type: "spline"
+  spline_num_bins: 16 # for splines
+
+  min_energy_structure_path: null
+  torsion_shifts: False
+
+  use_sobol_prior: False
+
+  hidden: [120,120]
+  use_silu_activation: False # Instead of relu
+  add_skip_connection: False
+
+  constrain_hydrogen_permutation: False
+
+  architecture:
+    # Syntax: ["What to transform", "What to condition on", Also add the reverse?, temperature-aware?]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+    - ["X2", "X1", False, False]
+    - ["X1", "X2", False, False]
+
+evaluation:
+  apply_cart_permutation_to_ground_truth_datasets: False
+
+  eval_every: 10_000
+  eval_samples: 1_000
+
+  big_eval_every: ${training.max_iter}
+  big_eval_samples: 1_000
+
+  NLL_every: 1000
+
+  calculate_forward_ESS_for_Ts: []
+  overwrite_eval_sampling_T_pairs: 
+    - [null, null]
+    - 
+      - null
+      - 1.0
+  overwrite_eval_NLL_Ts:
+    - ${main_temp}
+
+  skip_initial_eval: False

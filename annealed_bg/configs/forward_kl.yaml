@@ -1,0 +1,20 @@
+defaults:
+  - default
+  - training/lr_scheduler: cosine_onecycle
+  - _self_
+
+training:
+  lr: 5.e-5
+  batch_size: 1024
+
+  training_mode:
+    mode_name: "forward_kld"
+
+checkpointing:
+  write_checkpoint_every: 125_000
+
+experiment:
+  wandb_tags:
+    - "fwd_kl"
+    - ${system.name}
+    - "${main_temp}K"

@@ -1,0 +1,60 @@
+defaults:
+  - default
+  - training/lr_scheduler: cosine_onecycle
+  - ais_config: original_fab
+  - _self_
+
+training:
+  lr: 1.e-4
+  batch_size: 1024
+
+  max_iter: 50_000
+
+  training_mode:
+    mode_name: "fab"
+
+    n_int_dist: 8
+    n_outer: 1
+    n_inner: 4
+    epsilon: 0.05
+    common_epsilon_init_weight: 0.05
+    adjust_step_size_training: True
+    alpha: 2.0
+
+    # Trafo applied on the ICs before performing AIS
+    # Syntax: {channel_name: (perform unbound atanh trafo?, scaler)}
+    AIS_trafo_config: ???
+
+    reject_spline_OOB_samples: ???
+
+    additional_sampling_eval:
+      eval_p2q: False
+
+    replay_buffer:
+      n_updates: 8
+      min_length: 64
+      max_length: 512
+      max_adjust_w_clip: 10
+
+  max_grad_norm: 1000.0
+  warmup_iters: 1000
+
+  weight_decay: 1.e-5
+
+evaluation:
+  eval_every: 10_000
+  eval_samples: 1_000_000
+
+  big_eval_every: ${training.max_iter}
+  big_eval_samples: 10_000_000
+
+  NLL_every: 2_000
+
+checkpointing:
+  write_checkpoint_every: 10_000
+
+experiment:
+  wandb_tags:
+    - "fab"
+    - ${system.name}
+    - "${main_temp}K"

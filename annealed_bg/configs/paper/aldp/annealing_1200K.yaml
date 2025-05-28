@@ -1,0 +1,48 @@
+defaults:
+  - geometric_annealing
+  - system: aldp
+  - _self_
+
+main_temp: 1200.0
+
+training:
+  lr: 5.e-6
+  batch_size: 2048
+  max_iter: 300_000
+
+  lr_scheduler:
+    scheduler_type: "cosine_warm_restarts"
+    T_0: 30_000
+    eta_min: 0.0
+
+  checkpoint_path: ???
+
+  training_mode:
+    temp_sampling:
+      temp_sampling_strategy: "sequence"
+
+      # Format for each sequence step:
+      # - (sampling_T, reweighting_T, [iterations_per_step], [reinit generator], [n_samples], [resample_to])
+      sequence: [[1200.0, 1028.69], [1028.69, 881.84], [881.84, 755.95], [755.95, 648.04], [648.04, 555.52], [555.52, 476.22], [476.22, 408.24], [408.24, 349.96], [349.96, 300.0], [300.0, 300.0]]
+
+      iterations_per_step: 30_000
+
+    buffer:
+      activate_buffer_after: -1
+      buffer_n_samples_per_T: 5_000_000
+      update_buffer_every: 30_000
+
+      resample_to: 2_000_000
+      clip_top_k_weights_fraction: 1.e-4
+
+evaluation:
+  eval_every: 30_000
+  eval_samples: 1_000_000
+
+  big_eval_every: 300_000
+  big_eval_samples: 10_000_000
+
+  NLL_every: 5000
+
+checkpointing:
+  write_checkpoint_every: 30_000

@@ -1,0 +1,15 @@
+name: annealed_bg
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.8
+  - pip=24.0
+  - openmm=8.0.0
+  - openmmtools=0.23.1
+  - cudatoolkit=11.4.3
+  - mdtraj=1.9.9
+  - pyemma=2.5.12
+  - pip:
+    - torch @ https://download.pytorch.org/whl/cu118/torch-2.3.0%2Bcu118-cp311-cp311-linux_x86_64.whl
+    - black==24.10.0
+    - -e .

@@ -1,0 +1,16 @@
+# Syntax: ["What to transform", "What to condition on", Also add the reverse?, temperature-aware?]
+# Next to the names of the channels, also "ALL" and "REMAINING" are supported.
+# Channels can be combined using "+", e.g. "TORSIONS+ANGLES"
+
+- ["TORSIONS", "ANGLES+BONDS", False, False]
+- ["ANGLES", "TORSIONS+BONDS", False, False]
+- ["BONDS", "TORSIONS+ANGLES", False, False]
+- ["TORSIONS", "ANGLES+BONDS", False, False]
+- ["ANGLES", "TORSIONS+BONDS", False, False]
+- ["BONDS", "TORSIONS+ANGLES", False, False]
+- ["TORSIONS", "ANGLES+BONDS", False, False]
+- ["ANGLES", "TORSIONS+BONDS", False, False]
+- ["BONDS", "TORSIONS+ANGLES", False, False]
+- ["TORSIONS", "ANGLES+BONDS", False, False]
+- ["ANGLES", "TORSIONS+BONDS", False, False]
+- ["BONDS", "TORSIONS+ANGLES", False, False]

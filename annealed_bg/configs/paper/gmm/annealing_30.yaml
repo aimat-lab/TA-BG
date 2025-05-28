@@ -1,0 +1,54 @@
+defaults:
+  - geometric_annealing
+  - system: gmm
+  - _self_
+
+main_temp: 30.0
+
+training:
+  lr: 5.e-5
+  batch_size: 8192
+  max_iter: ${eval:"${training.training_mode.temp_sampling.iterations_per_step}*len(${training.training_mode.temp_sampling.sequence})"}
+
+  lr_scheduler: null
+
+  checkpoint_path: ???
+
+  training_mode:
+    mode_name: "reweighting"
+
+    max_temperature_range: 
+      - 1.0
+      - ${main_temp}
+
+    temp_sampling:
+      temp_sampling_strategy: "sequence"
+
+      # Format for each sequence step:
+      # - (sampling_T, reweighting_T, [iterations_per_step], [reinit generator], [n_samples], [resample_to])
+      sequence: [[30.0, 18.45], [18.45, 11.35], [11.35, 6.98], [6.98, 4.30], [4.30, 2.64], [2.64, 1.63], [1.63, 1.0], [1.0, 1.0]]
+
+      iterations_per_step: 20_000
+
+    buffer:
+      activate_buffer_after: -1
+      buffer_n_samples_per_T: 2_000_000
+      update_buffer_every: ${training.training_mode.temp_sampling.iterations_per_step}
+
+      resample_to: 2_000_000
+      clip_top_k_weights_fraction: null
+
+    context_preprocessor: null
+
+    # Only used when no buffer is used:
+    resample_batch_to: null # Can be null, in which case normalized weights are used directly in the loss
+    self_normalize_weights: True
+    clip_top_k_weights: null
+
+evaluation:
+  eval_every: ${training.training_mode.temp_sampling.iterations_per_step}
+  big_eval_every: ${training.max_iter}
+  NLL_every: 1000
+
+checkpointing:
+  write_checkpoint_every: ${training.max_iter}
