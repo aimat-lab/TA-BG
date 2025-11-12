@@ -10,13 +10,12 @@ fab @ git+https://github.com/henrik-schopmans/fab-torch-orig.git
 python-box==7.2.0
 scienceplots==2.1.1
 pydantic==2.10.3
-mdtraj
 matplotlib==3.10.0
 pandas
 tqdm
 wandb
 hydra-core
-ase
+ase==3.25.0
 einops
 pytest
 auto-slurm @ git+https://github.com/aimat-lab/AutoSlurm.git

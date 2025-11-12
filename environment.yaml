@@ -8,6 +8,7 @@ dependencies:
   - openmmtools=0.23.1
   - cudatoolkit=11.4.3
   - mdtraj=1.9.9
+  - jax==0.5.2
   - pyemma=2.5.12
   - pip:
     - torch @ https://download.pytorch.org/whl/cu118/torch-2.3.0%2Bcu118-cp311-cp311-linux_x86_64.whl
