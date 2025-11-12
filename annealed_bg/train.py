@@ -19,7 +19,7 @@ from annealed_bg.utils.dataloading import (
     load_trajectory,
 )
 from annealed_bg.utils.general import build_resume_python_command, set_precision
-from annealed_bg.utils.matplotlib import setup_matplotlib_defaults
+from annealed_bg.utils.matplotlib_utils import setup_matplotlib_defaults
 from annealed_bg.utils.newline_tqdm import NewlineTqdm as tqdm
 from annealed_bg.utils.permutations import apply_permutation
 from annealed_bg.utils.wandb import initialize_wandb
